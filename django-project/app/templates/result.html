@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Covid Test Results</title>
+        <link rel="stylesheet" href={% static 'css/submit.css' %}>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+          #loading {
+            display: block;
+            margin-left: 35%;
+            margin-right: 50%;
+            margin-top: 40px;
+          }
+        </style>
+      </head>
+    <body style="background-color: lightgrey;">
+      <div id="success">
+        <div class="fullframe" id="covid">
+            <div class="bracket-container">
+              <div class="content">
+                <div class="dash-title">Results</div>
+
+                <div id="resultCovid">
+
+                </div>
+              
+                <h4 class="name" style="font-size: 30px;font-family: 'SF UI Display';font-weight: 100;">Next steps,</h4>
+                <p class="description">Kindly isolate yourself, Your nearest medical staff will be getting in touch with you.</p>
+                <p class="description">Inform all your friends and family take a test and be safe.</p>
+                <p class="description">For any Queries kindly contact +91 90000 90000.</p>
+              </div>
+  
+              <div class="bracket tr"></div>
+              <div class="bracket tl"></div>
+              <div class="bracket br"></div>
+              <div class="bracket bl"></div>
+            </div>
+          </div>
+
+          <div class="fullframe" id="normal">
+              <div class="bracket-container">
+                <div class="content">
+                  <div class="dash-title">Results</div>
+    
+                  <div id="resultNormal">
+
+                  </div>
+                
+                  <h4 class="name" style="font-size: 30px;font-family: 'SF UI Display';font-weight: 100;">Next steps,</h4>
+                  <p class="description">Maintain social distancing.</p>
+                  <p class="description">Wear a mask.</p>
+                  <p class="description">Be safe.</p>
+                </div>
+    
+                <div class="bracket tr"></div>
+                <div class="bracket tl"></div>
+                <div class="bracket br"></div>
+                <div class="bracket bl"></div>
+              </div>
+            </div>
+        </div>
+
+
+      <div id="loading">
+        <img src="{% static 'images/loading-final.gif' %}" width="400px" height="135px" alt="Loading-icon" style="margin-left: 25%;">
+        <!--<img src="{% static 'images/loading-icon-infinity.gif' %}" width="50px" height="50px" alt="Loading-icon" style="margin-left: 55%;">-->
+        </br>
+        <img src="{% static 'images/Covid19-1.gif' %}" width="500px" height="500px" alt="Covid-Loading-icon">
+      </div>
+
+      <script>
+        var replace_data = function(data1){
+            //Whether to display Covid or normal page
+            if(data1.covidFlag=='True')
+            {
+              $('#covid').show();
+              $('#resultCovid').append("<h1 class=\"name\" style=\"font-size: 50px;\">Name: "+data1.fname+" "+data1.lname+" </br> Test Results: "+data1.results+"</h1>");
+            }
+            else
+            {
+              $('#normal').show();
+              $('#resultNormal').append("<h1 class=\"name\" style=\"font-size: 50px;\">Name: "+data1.fname+" "+data1.lname+" </br> Test Results: "+data1.results+"</h1>");
+            }
+            //Finally hide the loading page
+            $('#loading').remove();
+        }
+
+        // AJAX call when page has loaded
+        //Initially hide till processing is done
+        $('#covid').hide();
+        $('#normal').hide();
+        $(document).ready(function(){
+            $.ajax({
+                url: '/processingData/',
+                data: {
+                    'fname': '{{ first_name }}',
+                    'lname': '{{ last_name }}',
+                    'uploaded_file_url': '{{ uploadedURL }}',
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                dataType: 'json',
+                type: 'POST',
+                success: function(data1){
+                    replace_data(data1);
+                }
+            });
+        });
+
+      </script>
+    </body>
+</html>

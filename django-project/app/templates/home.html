@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Patient Form</title>
+    <link rel="stylesheet" href={% static 'css/home.css' %}>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="testbox">
+      <form class="" method="post" enctype="multipart/form-data"  action="{% url 'app:submit' %}">
+        
+        {% csrf_token %}
+        <div class="banner">
+          <h1>User Details Form</h1>
+        </div>
+        <br/>
+        <fieldset>
+          <legend>User Details</legend>
+          <div class="item">
+            <label for="fname"> First Name<span>*</span></label>
+            <input id="fname" type="text" name="first_name" required/>
+          </div>
+
+        <!--  <div class="item">
+            <label for="initial">Middle Name</label>
+            <input id="initial" type="text" name="initial" required/>
+          </div> -->
+          <div class="item">
+            <label for="lname"> Last Name<span>*</span></label>
+            <input id="lname" type="text" name="last_name" required/>
+          </div>
+
+          <div class="item">
+            <label for="gender"> Gender<span>*</span></label>
+            <input id="gender" type="text" name="gender" required/>
+          </div>
+
+          <div class="item">
+            <label for="address"> Address<span>*</span></label>
+            <input id="address" type="text"   name="address" required/>
+          </div>
+          <div class="item">
+            <label for="phone"> Phone No.<span>*</span></label>
+            <input id="phone" type="number"   name="phone" required/>
+          </div>
+          <div class="item">
+            <label for="birthday"> Birth date<span>*</span></label>
+            <input type="date" name="birthday" required/>
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="question">
+            <label>Is this your first visit to our site?</label>
+            <div class="question-answer">
+              <div>
+                <input type="radio" value="False" id="radio_1" name="visit"/>
+                <label for="radio_1" class="radio"><span>Yes</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="True" id="radio_2" name="visit"/>
+                <label for="radio_2" class="radio"><span>No</span></label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <br/>
+        <fieldset>
+          <legend>User Information</legend>
+          <div class="item">
+            <label for="date"> Date of X-Ray<span>*</span></label>
+            <input id="date" type="date" name="date" required/>
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="item">
+            <label for="time"> Time of X-Ray<span>*</span></label>
+            <select>
+              <option selected value="" name = "time" disabled selected></option>
+              <option value="m" >Morning</option>
+              <option value="a">Afternoon</option>
+              <option value="e">Evening</option>
+            </select>
+          </div>
+          <div class="item">
+            <label for="Upload CXR image"> Upload Chest X-Ray image<span>*</span></label>
+            <!--  <div>
+                <input type="radio" value="none" id="radio_1" name="physician"/>
+                <label for="radio_1" class="radio"><span>Dr. Anderson</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_3" name="physician"/>
+                <label for="radio_3" class="radio"><span>Dr. Patel</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_4" name="physician"/>
+                <label for="radio_4" class="radio"><span>No preference</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_5" name="physician"/>
+                <label for="radio_5" class="radio"><span>Dr. Jones</span></label>
+              </div>
+              <div>
+                <input  type="radio" value="none" id="radio_6" name="physician"/>
+                <label for="radio_6" class="radio"><span>Dr. Smith</span></label>
+              </div>
+            -->
+
+        <!--    <input type="file" name="fileToUpload" value="" id="image" placeholder="Upload CXR image">
+            </div>
+-->
+
+            <input type="file" name="image" value="" id="image" placeholder="Upload CXR image">
+            </div>
+
+          <div class="item">
+            <label for="instructions"> Please describe the reason for this visit<span></span></label>
+            <textarea name="body" rows="3"></textarea>
+          </div>
+        </fieldset>
+        <div class="btn-block">
+          <button type="submit" href="/">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

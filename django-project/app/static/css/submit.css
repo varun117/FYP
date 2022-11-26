@@ -1,0 +1,177 @@
+$bg-color: #36383F;
+$fg-color: #fff;
+$primary-color: #FEEA93;
+$title-color: $primary-color;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $bg-color;
+  color: $fg-color;
+  font-family: 'SF UI Display';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fullframe {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.dash-title {
+  position: relative;
+  font-size: 16px;
+  color: $title-color;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  display: inline-block;
+  cursor: default;
+  
+  user-select: none;
+}
+
+.dash-title:before, .dash-title:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 2px;
+  background: $primary-color;
+}
+
+.dash-title:before {
+  left: -60px;
+  transform-origin: right;
+}
+
+.dash-title:after {
+  right: -50px;
+  transform-origin: left;
+}
+
+.bracket-container {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  text-align: center;
+}
+
+.bracket-container .content {
+  min-width: 520px;
+  width: auto;
+  
+  position: relative;
+  margin: 60px 90px;
+  width: 580px;
+}
+
+.bracket-container .content h1.name {
+  position: relative;
+  // left: 50%;
+  // margin-left: -100%;
+  color: $fg-color;
+  font-size: 50px;
+  font-family: 'SF UI Display';
+  font-weight: 100;
+  letter-spacing: .025em;
+  // margin-right: -.5em;
+  margin-bottom: 72px;
+  margin-top: 40px;
+  cursor: default;
+}
+
+.bracket-container .content h4.name {
+  position: relative;
+  // left: 50%;
+  // margin-left: -100%;
+  color: $fg-color;
+  font-size: 30px;
+  font-family: 'SF UI Display';
+  font-weight: 100;
+  letter-spacing: .025em;
+  // margin-right: -.5em;
+  margin-bottom: 72px;
+  margin-top: 40px;
+  cursor: default;
+}
+
+.bracket-container .content h1.name:after {
+  content: '';
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  margin-left: -.25em;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 1px;
+  background-color: $primary-color;
+}
+
+.bracket-container .content .description {
+  cursor: default;
+  max-width: 600px;
+  margin: 0 auto;
+  text-transform: none;
+  line-height: 1.5;
+  font-size: 20px;
+}
+
+.bracket-container .bracket {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-color: $primary-color;
+  border-style: solid;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+}
+
+.bracket-container .bracket.tr {
+  top: 0px;
+  right: 0px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.bracket-container .bracket.tl {
+  top: 0px;
+  left: 0px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.bracket-container .bracket.bl {
+  bottom: 0px;
+  left: 0px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.bracket-container .bracket.br {
+  bottom: 0px;
+  right: 0px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+::selection {
+  background: #a38003;
+  color: white;
+}
